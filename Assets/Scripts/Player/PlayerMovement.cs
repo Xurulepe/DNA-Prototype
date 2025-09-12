@@ -5,14 +5,16 @@ public class PlayerMovement : MonoBehaviour
 {
     [Header("Movement Settings")]
     [SerializeField] private float _moveSpeed = 5f;
-    [SerializeField] private Vector3 _moveInput;
+    private Vector3 _moveInput;
 
     [Header("Dash Settings")]
-    [SerializeField] private float _dashSpeed = 20f;
+    [SerializeField] private float _dashPower = 20f;
+    [SerializeField] private float _dashDuration = 0.2f;
+    private float _dashDurationTimer = 0f;
     [SerializeField] private float _dashCooldown = 1f;
-    [SerializeField] private float _dashCooldownTimer = 0f;
-    [SerializeField] private bool _canDash = true;
-    [SerializeField] private bool _isDashing = false;
+    private float _dashCooldownTimer = 0f;
+    private bool _canDash = true;
+    private bool _isDashing = false;
 
     private Rigidbody _rigidbody;
 
@@ -23,9 +25,14 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        if (!_canDash)
+        if (!_canDash && !_isDashing)
         {
             DashCooldown();
+        }
+
+        if (_isDashing)
+        {
+            DashController();
         }
     }
 
@@ -44,7 +51,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (!_isDashing)
         {
-            _rigidbody.linearVelocity = _moveInput * _moveSpeed;
+            _rigidbody.linearVelocity = new Vector3(_moveInput.x * _moveSpeed, _rigidbody.linearVelocity.y, _moveInput.z * _moveSpeed);
         }
     }
     #endregion
@@ -61,8 +68,19 @@ public class PlayerMovement : MonoBehaviour
     private void Dash()
     {
         _isDashing = true;
-        _rigidbody.linearVelocity = _moveInput * _dashSpeed;
+        _rigidbody.AddForce(_moveInput * _dashPower, ForceMode.VelocityChange);
         _canDash = false;
+    }
+
+    private void DashController()
+    {
+        _dashDurationTimer += Time.deltaTime;
+
+        if (_dashDurationTimer >= _dashDuration)
+        {
+            _isDashing = false;
+            _dashDurationTimer = 0f;
+        }
     }
 
     private void DashCooldown()

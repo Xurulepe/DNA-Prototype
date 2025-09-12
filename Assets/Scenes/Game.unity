@@ -217,7 +217,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _moveSpeed: 5
   _moveInput: {x: 0, y: 0, z: 0}
-  _dashSpeed: 10
+  _dashSpeed: 35
+  _dashDuration: 0.2
+  _dashDurationTimer: 0
   _dashCooldown: 2
   _dashCooldownTimer: 0
   _canDash: 1
