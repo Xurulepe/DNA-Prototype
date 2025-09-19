@@ -6,6 +6,7 @@ public class PlayerAttack : MonoBehaviour
     [Header("Shooting Settings")]
     [SerializeField] private Transform _shootPoint;
     [SerializeField] private float _projectileSpeed = 20f;
+    [SerializeField] private float _projectileDamage = 10f;
     [SerializeField] private int _enemyLayer;
 
     #region SHOOT
@@ -32,4 +33,10 @@ public class PlayerAttack : MonoBehaviour
         }
     }
     #endregion
+}
+
+public enum AttackType
+{
+    Melee,
+    Ranged
 }
