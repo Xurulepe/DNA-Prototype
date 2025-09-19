@@ -6,6 +6,7 @@ public class PlayerAttack : MonoBehaviour
     [Header("Shooting Settings")]
     [SerializeField] private Transform _shootPoint;
     [SerializeField] private float _projectileSpeed = 20f;
+    [SerializeField] private int _enemyLayer;
 
     #region SHOOT
     public void OnShoot(InputAction.CallbackContext context)
@@ -18,14 +19,16 @@ public class PlayerAttack : MonoBehaviour
 
     private void Shoot()
     {
-        GameObject bullet = ProjectilePool.Instance.GetPooledObject();
-        if (bullet != null)
+        GameObject projectile = ProjectilePool.Instance.GetPooledObject();
+        if (projectile != null)
         {
-            bullet.transform.position = _shootPoint.transform.position;
-            bullet.transform.rotation = _shootPoint.transform.rotation;
-            bullet.SetActive(true);
+            projectile.transform.position = _shootPoint.transform.position;
+            projectile.transform.rotation = _shootPoint.transform.rotation;
+            projectile.SetActive(true);
 
-            bullet.GetComponent<Rigidbody>().linearVelocity = _shootPoint.forward * _projectileSpeed; 
+            Projectile projectileScript = projectile.GetComponent<Projectile>();
+            projectileScript.Setup(_enemyLayer);
+            projectileScript.ShootProjectile(_shootPoint.forward, _projectileSpeed);
         }
     }
     #endregion
