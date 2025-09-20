@@ -7,7 +7,13 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] private Transform _shootPoint;
     [SerializeField] private float _projectileSpeed = 20f;
     [SerializeField] private float _projectileDamage = 10f;
-    [SerializeField] private int _enemyLayer;
+    [SerializeField] private int _enemyLayerInt;
+
+    [Header("Melee Settings")]
+    [SerializeField] private Transform _meleeAttackPoint;
+    [SerializeField] private Vector3 _meleeRange;
+    [SerializeField] private float _meleeDamage = 10f;
+    [SerializeField] private LayerMask _enemyLayer;
 
     #region SHOOT
     public void OnShoot(InputAction.CallbackContext context)
@@ -28,11 +34,37 @@ public class PlayerAttack : MonoBehaviour
             projectile.SetActive(true);
 
             Projectile projectileScript = projectile.GetComponent<Projectile>();
-            projectileScript.Setup(_enemyLayer);
+            projectileScript.Setup(_enemyLayerInt);
             projectileScript.ShootProjectile(_shootPoint.forward, _projectileSpeed);
         }
     }
     #endregion
+
+    #region SLASH
+    public void OnSlash(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            Slash();
+        }
+    }
+
+    private void Slash()
+    {
+        Collider[] hitEnemies = Physics.OverlapBox(_meleeAttackPoint.position, _meleeRange * 0.5f, Quaternion.identity, _enemyLayer);
+
+        foreach (Collider enemy in hitEnemies)
+        {
+            Debug.Log("Hit enemy: " + enemy.name);
+        }
+    }
+    #endregion
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireCube(_meleeAttackPoint.position, _meleeRange);
+    }
 }
 
 public enum AttackType
