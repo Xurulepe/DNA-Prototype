@@ -4,30 +4,39 @@ using UnityEngine;
 public class ObjectPool : MonoBehaviour
 {
     [SerializeField] protected List<GameObject> pooledObjects;
-    [SerializeField] protected GameObject objectToPool;
-    [SerializeField] protected int amountToPool;
+    [SerializeField] protected List<ObjectToPool> objectsToPool;
 
     protected virtual void Start()
     {
         pooledObjects = new List<GameObject>();
         GameObject tmp;
-        for (int i = 0; i < amountToPool; i++)
+        for (int i = 0; i < objectsToPool.Count; i++)
         {
-            tmp = Instantiate(objectToPool);
-            tmp.SetActive(false);
-            pooledObjects.Add(tmp);
+            for (int j = 0; j < objectsToPool[i].amount; j++)
+            {
+                tmp = Instantiate(objectsToPool[i].prefab);
+                tmp.SetActive(false);
+                pooledObjects.Add(tmp);
+            }
         }
     }
 
     public virtual GameObject GetPooledObject()
     {
-        for (int i = 0; i < amountToPool; i++)
+        foreach (GameObject obj in pooledObjects)
         {
-            if (!pooledObjects[i].activeInHierarchy)
+            if (!obj.activeInHierarchy)
             {
-                return pooledObjects[i];
+                return obj;
             }
         }
         return null;
     }
+}
+
+[System.Serializable]
+public class ObjectToPool
+{
+    public GameObject prefab;
+    public int amount;
 }

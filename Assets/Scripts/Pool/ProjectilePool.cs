@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class ProjectilePool : ObjectPool
 {
-    public static ProjectilePool Instance;
+    public static ProjectilePool Instance { get; private set; }
 
     private void Awake()
     {

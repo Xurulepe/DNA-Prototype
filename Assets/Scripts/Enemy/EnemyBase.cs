@@ -11,6 +11,7 @@ public class EnemyBase : MonoBehaviour
     [Header("Enemy Behaviour")]
     [SerializeField] protected AttackType _weaknessToAttackType;
     [SerializeField] protected State _currentState;
+    [SerializeField] protected EnemyType _enemyType;
 
     [Header("AI Settings")]
     [SerializeField] protected Transform _target;
@@ -25,11 +26,22 @@ public class EnemyBase : MonoBehaviour
     [SerializeField] protected float _experiencePoints;
     [SerializeField] protected GameObject _deathDrop;
 
+    public enum EnemyType
+    {
+        Melee,
+        Shooter
+    }
+
     protected enum State
     {
         Patroling,
         Chasing,
         Attacking
+    }
+
+    protected void Awake()
+    {
+        _navMeshAgent = GetComponent<NavMeshAgent>();
     }
 
     protected virtual void OnEnable()
@@ -39,6 +51,7 @@ public class EnemyBase : MonoBehaviour
 
     protected virtual void Start()
     {
+        _target = GameManager.Instance.GetPlayerTransform();
         _currentState = State.Patroling;
     }
 
@@ -104,4 +117,10 @@ public class EnemyBase : MonoBehaviour
     {
 
     }
+
+    public EnemyType GetEnemyType()
+    {
+        return _enemyType;
+    }
 }
+
