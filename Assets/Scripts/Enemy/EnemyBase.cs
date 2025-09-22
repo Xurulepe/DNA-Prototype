@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyBase : MonoBehaviour
 {
@@ -10,6 +11,10 @@ public class EnemyBase : MonoBehaviour
     [Header("Enemy Behaviour")]
     [SerializeField] protected AttackType _weaknessToAttackType;
     [SerializeField] protected State _currentState;
+
+    [Header("AI Settings")]
+    [SerializeField] protected Transform _target;
+    [SerializeField] protected NavMeshAgent _navMeshAgent;
 
     [Header("Enemy Attack")]
     [SerializeField] protected float _detectionRange;
@@ -55,17 +60,27 @@ public class EnemyBase : MonoBehaviour
 
     protected virtual void Patrol()
     {
-        
+        if (Vector3.Distance(transform.position, _target.position) <= _detectionRange)
+        {
+            _currentState = State.Chasing;
+        }
     }
 
     protected virtual void Chase()
     {
-        
+        _navMeshAgent.isStopped = false;
+        _navMeshAgent.SetDestination(_target.position);
+
+        if (Vector3.Distance(transform.position, _target.position) <= _attackRange)
+        {
+            _currentState = State.Attacking;
+        }
     }
 
     protected virtual void Attack()
     {
-        
+        _navMeshAgent.isStopped = true;
+        // Attack
     }
 
     public virtual void ReceiveAttack(float damage, AttackType attackType)
