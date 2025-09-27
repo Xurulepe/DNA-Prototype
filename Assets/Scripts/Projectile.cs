@@ -2,17 +2,20 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    Rigidbody _rigidbody;
-    LayerMask _targetLayer;
+    private Rigidbody _rigidbody;
+    private LayerMask _targetLayer;
+
+    private int _damage;
 
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody>();
     }
 
-    public void Setup(int targetLayerInt)
+    public void Setup(int targetLayerInt, int projectileDamage)
     {
         _targetLayer = targetLayerInt;
+        _damage = projectileDamage;
     }
 
     public void ShootProjectile(Vector3 direction, float speed)
@@ -25,11 +28,12 @@ public class Projectile : MonoBehaviour
     {
         if (other.gameObject.layer == _targetLayer)
         {
-            // aplicar dano ao alvo
-            Debug.Log("Hit target: " + other.name);
+            if (other.TryGetComponent(out IAttackable attackable))
+            {
+                attackable.ReceiveAttack(AttackType.Ranged, _damage);
+            }
         }
 
-        Debug.Log("Hit " + other.name);
         gameObject.SetActive(false);
     }
 }

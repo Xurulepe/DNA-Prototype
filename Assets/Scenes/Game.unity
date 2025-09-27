@@ -434,7 +434,7 @@ MonoBehaviour:
   _shootPoint: {fileID: 1260058950}
   _projectileSpeed: 50
   _projectileDamage: 10
-  _enemyLayerInt: 0
+  _enemyLayerInt: 7
   _meleeAttackPoint: {fileID: 333563837}
   _meleeRange: {x: 1.5, y: 1.5, z: 1.5}
   _meleeDamage: 10
@@ -1681,6 +1681,10 @@ PrefabInstance:
       propertyPath: _target
       value: 
       objectReference: {fileID: 20066893}
+    - target: {fileID: 3778027147643004392, guid: d9d8d10dcecf25b4cbceaabb1bb733ac, type: 3}
+      propertyPath: m_BaseOffset
+      value: 1.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

@@ -3,7 +3,7 @@ using UnityEngine.AI;
 
 [RequireComponent(typeof(NavMeshAgent))]
 [RequireComponent(typeof(HealthSystem))]
-public class EnemyBase : MonoBehaviour
+public class EnemyBase : MonoBehaviour, IAttackable
 {
     [Header("Enemy Stats")]
     [SerializeField] protected int _maxHealth;
@@ -102,7 +102,7 @@ public class EnemyBase : MonoBehaviour
         // Attack
     }
 
-    public virtual void ReceiveAttack(int damage, AttackType attackType)
+    public virtual void ReceiveAttack(AttackType attackType, int damage)
     {
         if (attackType == _weaknessToAttackType)
         {

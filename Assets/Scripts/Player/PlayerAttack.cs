@@ -34,7 +34,7 @@ public class PlayerAttack : MonoBehaviour
             projectile.SetActive(true);
 
             Projectile projectileScript = projectile.GetComponent<Projectile>();
-            projectileScript.Setup(_enemyLayerInt);
+            projectileScript.Setup(_enemyLayerInt, _projectileDamage);
             projectileScript.ShootProjectile(_shootPoint.forward, _projectileSpeed);
         }
     }
@@ -57,7 +57,7 @@ public class PlayerAttack : MonoBehaviour
         {
             if (hitEnemy.TryGetComponent(out EnemyBase enemyBase))
             {
-                enemyBase.ReceiveAttack(_meleeDamage, AttackType.Melee);
+                enemyBase.ReceiveAttack(AttackType.Melee, _meleeDamage);
             }
         }
     }
