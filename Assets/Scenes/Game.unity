@@ -1309,7 +1309,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3465ee2803affcf408a7d6d0fa214f95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 0}
+  _player: {fileID: 20066887}
 --- !u!4 &1236815206
 Transform:
   m_ObjectHideFlags: 0
@@ -1568,6 +1568,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 150522067163418948, guid: ac7a0cf75bd0e7c46a098c93545cab18, type: 3}
+      propertyPath: m_WalkableMask
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3156441969123602950, guid: ac7a0cf75bd0e7c46a098c93545cab18, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.15

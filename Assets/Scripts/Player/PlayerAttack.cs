@@ -6,13 +6,13 @@ public class PlayerAttack : MonoBehaviour
     [Header("Shooting Settings")]
     [SerializeField] private Transform _shootPoint;
     [SerializeField] private float _projectileSpeed = 20f;
-    [SerializeField] private float _projectileDamage = 10f;
+    [SerializeField] private int _projectileDamage = 10;
     [SerializeField] private int _enemyLayerInt;
 
     [Header("Melee Settings")]
     [SerializeField] private Transform _meleeAttackPoint;
     [SerializeField] private Vector3 _meleeRange;
-    [SerializeField] private float _meleeDamage = 10f;
+    [SerializeField] private int _meleeDamage = 10;
     [SerializeField] private LayerMask _enemyLayer;
 
     #region SHOOT
@@ -53,9 +53,12 @@ public class PlayerAttack : MonoBehaviour
     {
         Collider[] hitEnemies = Physics.OverlapBox(_meleeAttackPoint.position, _meleeRange * 0.5f, Quaternion.identity, _enemyLayer);
 
-        foreach (Collider enemy in hitEnemies)
+        foreach (Collider hitEnemy in hitEnemies)
         {
-            Debug.Log("Hit enemy: " + enemy.name);
+            if (hitEnemy.TryGetComponent(out EnemyBase enemyBase))
+            {
+                enemyBase.ReceiveAttack(_meleeDamage, AttackType.Melee);
+            }
         }
     }
     #endregion

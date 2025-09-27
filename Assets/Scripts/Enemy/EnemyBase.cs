@@ -1,12 +1,15 @@
 using UnityEngine;
 using UnityEngine.AI;
 
+[RequireComponent(typeof(NavMeshAgent))]
+[RequireComponent(typeof(HealthSystem))]
 public class EnemyBase : MonoBehaviour
 {
     [Header("Enemy Stats")]
-    [SerializeField] protected float _maxHealth;
+    [SerializeField] protected int _maxHealth;
     [SerializeField] protected float _moveSpeed;
-    protected float _currentHealth;
+    protected int _currentHealth;
+    protected HealthSystem _healthSystem;
 
     [Header("Enemy Behaviour")]
     [SerializeField] protected AttackType _weaknessToAttackType;
@@ -42,15 +45,18 @@ public class EnemyBase : MonoBehaviour
     protected void Awake()
     {
         _navMeshAgent = GetComponent<NavMeshAgent>();
+        _healthSystem = GetComponent<HealthSystem>();
     }
 
     protected virtual void OnEnable()
     {
-        _currentHealth = _maxHealth;
+        _healthSystem.SetMaxHealth(_maxHealth);
+        _currentState = State.Patroling;
     }
 
     protected virtual void Start()
     {
+        _healthSystem.OnDeath.AddListener(Die);
         _target = GameManager.Instance.GetPlayerTransform();
         _currentState = State.Patroling;
     }
@@ -96,7 +102,7 @@ public class EnemyBase : MonoBehaviour
         // Attack
     }
 
-    public virtual void ReceiveAttack(float damage, AttackType attackType)
+    public virtual void ReceiveAttack(int damage, AttackType attackType)
     {
         if (attackType == _weaknessToAttackType)
         {
@@ -104,18 +110,15 @@ public class EnemyBase : MonoBehaviour
         }
     }
 
-    protected virtual void TakeDamage(float damage)
+    protected virtual void TakeDamage(int damage)
     {
-        _currentHealth -= damage;
-        if (_currentHealth <= 0)
-        {
-            Die();
-        }
+        _healthSystem.TakeDamage(damage);
     }
 
     protected virtual void Die()
     {
-
+        Debug.Log($"{gameObject.name} died.");
+        gameObject.SetActive(false);
     }
 
     public EnemyType GetEnemyType()
