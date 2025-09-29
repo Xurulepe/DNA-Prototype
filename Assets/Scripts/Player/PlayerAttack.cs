@@ -7,7 +7,7 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] private Transform _shootPoint;
     [SerializeField] private float _projectileSpeed = 20f;
     [SerializeField] private int _projectileDamage = 10;
-    [SerializeField] private int _enemyLayerInt;
+    [SerializeField] private int _playerLayerInt;
 
     [Header("Melee Settings")]
     [SerializeField] private Transform _meleeAttackPoint;
@@ -34,7 +34,7 @@ public class PlayerAttack : MonoBehaviour
             projectile.SetActive(true);
 
             Projectile projectileScript = projectile.GetComponent<Projectile>();
-            projectileScript.Setup(_enemyLayerInt, _projectileDamage);
+            projectileScript.Setup(_playerLayerInt, _projectileDamage);
             projectileScript.ShootProjectile(_shootPoint.forward, _projectileSpeed);
         }
     }

@@ -3,7 +3,7 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     private Rigidbody _rigidbody;
-    private LayerMask _targetLayer;
+    private LayerMask _ignoreLayer;
 
     private int _damage;
 
@@ -12,9 +12,9 @@ public class Projectile : MonoBehaviour
         _rigidbody = GetComponent<Rigidbody>();
     }
 
-    public void Setup(int targetLayerInt, int projectileDamage)
+    public void Setup(int ignoreLayerInt, int projectileDamage)
     {
-        _targetLayer = targetLayerInt;
+        _ignoreLayer = ignoreLayerInt;
         _damage = projectileDamage;
     }
 
@@ -26,14 +26,14 @@ public class Projectile : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.layer == _targetLayer)
+        if (other.gameObject.layer != _ignoreLayer)
         {
             if (other.TryGetComponent(out IAttackable attackable))
             {
                 attackable.ReceiveAttack(AttackType.Ranged, _damage);
             }
-        }
 
-        gameObject.SetActive(false);
+            gameObject.SetActive(false);
+        }
     }
 }

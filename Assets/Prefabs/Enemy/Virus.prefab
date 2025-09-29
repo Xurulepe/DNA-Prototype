@@ -136,6 +136,10 @@ MonoBehaviour:
   _attackCooldown: 2
   _experiencePoints: 10
   _deathDrop: {fileID: 0}
+  _shootPoint: {fileID: 7091192783210854345}
+  _projectileSpeed: 20
+  _projectileDamage: 10
+  _enemyLayerInt: 7
 --- !u!195 &3778027147643004392
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -201,7 +205,7 @@ Transform:
   m_GameObject: {fileID: 2246757077498386906}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.658}
+  m_LocalPosition: {x: 0, y: 0, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

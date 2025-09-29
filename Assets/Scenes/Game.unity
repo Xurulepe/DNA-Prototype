@@ -437,7 +437,7 @@ MonoBehaviour:
   _shootPoint: {fileID: 1260058950}
   _projectileSpeed: 50
   _projectileDamage: 10
-  _enemyLayerInt: 7
+  _playerLayerInt: 6
   _meleeAttackPoint: {fileID: 333563837}
   _meleeRange: {x: 1.5, y: 1.5, z: 1.5}
   _meleeDamage: 10
@@ -1666,10 +1666,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bacteria
       objectReference: {fileID: 0}
+    - target: {fileID: 4917409600882998179, guid: ac7a0cf75bd0e7c46a098c93545cab18, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5009157021857647619, guid: ac7a0cf75bd0e7c46a098c93545cab18, type: 3}
       propertyPath: _target
       value: 
       objectReference: {fileID: 20066893}
+    - target: {fileID: 5009157021857647619, guid: ac7a0cf75bd0e7c46a098c93545cab18, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5009157021857647619, guid: ac7a0cf75bd0e7c46a098c93545cab18, type: 3}
       propertyPath: _attackRange
       value: 2
