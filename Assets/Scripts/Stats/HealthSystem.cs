@@ -25,6 +25,16 @@ public class HealthSystem : MonoBehaviour
         return _currentHealth;
     }
 
+    public void Heal(int amount)
+    {
+        _currentHealth += amount;
+        if (_currentHealth > _maxHealth)
+        {
+            _currentHealth = _maxHealth;
+        }
+        OnHealtChanged?.Invoke();
+    }
+
     public void TakeDamage(int damage)
     {
         _currentHealth -= damage;
