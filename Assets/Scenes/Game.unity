@@ -184,6 +184,7 @@ GameObject:
   - component: {fileID: 20066898}
   - component: {fileID: 20066897}
   - component: {fileID: 20066896}
+  - component: {fileID: 20066899}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -280,6 +281,54 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 9da32e63-f90c-43b0-b3e3-743df04184ab
     m_ActionName: 'Player/Slash[/Mouse/rightButton]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 20066899}
+        m_TargetAssemblyTypeName: PlayerSkillController, Assembly-CSharp
+        m_MethodName: OnUseSkill1
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: ad955736-888e-41a7-a7ff-46da54a07052
+    m_ActionName: 'Player/UseSkill1[/Keyboard/1]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 20066899}
+        m_TargetAssemblyTypeName: PlayerSkillController, Assembly-CSharp
+        m_MethodName: OnUseSkill2
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: d0417d03-8f0d-4b8a-b84f-fef5189629cc
+    m_ActionName: 'Player/UseSkill2[/Keyboard/2]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 20066899}
+        m_TargetAssemblyTypeName: PlayerSkillController, Assembly-CSharp
+        m_MethodName: OnUseUltimateSkill
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 6267eff4-4158-4db9-bd16-20c0d77e9eec
+    m_ActionName: 'Player/UseUltimateSkill[/Keyboard/3]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboard & Mouse
   m_DefaultActionMap: Player
@@ -491,6 +540,22 @@ MonoBehaviour:
   OnDeath:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &20066899
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 20066887}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5289f610a7f73944e8c8f6954eb76cc3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _skills:
+  - {fileID: 11400000, guid: 303b0ec0772b57140a64f06c4d3dccc8, type: 2}
+  - {fileID: 11400000, guid: f81750153fb59dc4ab4263d359d72214, type: 2}
+  - {fileID: 11400000, guid: 73af8b862b50127409b48abead7c202e, type: 2}
 --- !u!1 &31960592
 GameObject:
   m_ObjectHideFlags: 0
@@ -1668,7 +1733,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4917409600882998179, guid: ac7a0cf75bd0e7c46a098c93545cab18, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5009157021857647619, guid: ac7a0cf75bd0e7c46a098c93545cab18, type: 3}
       propertyPath: _target
@@ -1698,6 +1763,10 @@ PrefabInstance:
     - target: {fileID: 8431245681556152, guid: d9d8d10dcecf25b4cbceaabb1bb733ac, type: 3}
       propertyPath: m_Name
       value: Virus
+      objectReference: {fileID: 0}
+    - target: {fileID: 8431245681556152, guid: d9d8d10dcecf25b4cbceaabb1bb733ac, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 93231864152810438, guid: d9d8d10dcecf25b4cbceaabb1bb733ac, type: 3}
       propertyPath: m_LocalPosition.x
