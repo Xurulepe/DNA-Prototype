@@ -25,6 +25,11 @@ public class HealthSystem : MonoBehaviour
         return _currentHealth;
     }
 
+    public float GetHealthNormalized()
+    {
+        return (float)_currentHealth / _maxHealth;
+    }
+
     public void Heal(int amount)
     {
         _currentHealth += amount;

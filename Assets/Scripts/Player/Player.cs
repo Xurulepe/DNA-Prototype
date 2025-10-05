@@ -14,13 +14,13 @@ public class Player : MonoBehaviour, IAttackable
     {
         _healthSystem = GetComponent<HealthSystem>();
         _manaSystem = GetComponent<ManaSystem>();
+
+        _healthSystem.SetMaxHealth(_maxHealth);
+        _manaSystem.SetMaxMana(_maxMana);
     }
 
     private void Start()
     {
-        _healthSystem.SetMaxHealth(_maxHealth);
-        _manaSystem.SetMaxMana(_maxMana);
-
         _healthSystem.OnDeath.AddListener(Die);
     }
 

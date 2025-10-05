@@ -24,6 +24,11 @@ public class ManaSystem : MonoBehaviour
         return _currentMana;
     }
 
+    public float GetManaNormalized()
+    {
+        return (float)_currentMana / _maxMana;
+    }
+
     public void RegenerateMana(int amount)
     {
         _currentMana += amount;
