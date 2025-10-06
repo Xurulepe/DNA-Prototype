@@ -2494,7 +2494,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TrackerSettings:
-    BindingMode: 1
+    BindingMode: 4
     PositionDamping: {x: 1, y: 1, z: 1}
     AngularDampingMode: 0
     RotationDamping: {x: 1, y: 1, z: 1}
@@ -2970,7 +2970,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4917409600882998179, guid: ac7a0cf75bd0e7c46a098c93545cab18, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5009157021857647619, guid: ac7a0cf75bd0e7c46a098c93545cab18, type: 3}
       propertyPath: _target
@@ -3003,7 +3003,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8431245681556152, guid: d9d8d10dcecf25b4cbceaabb1bb733ac, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 93231864152810438, guid: d9d8d10dcecf25b4cbceaabb1bb733ac, type: 3}
       propertyPath: m_LocalPosition.x

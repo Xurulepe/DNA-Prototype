@@ -6,6 +6,7 @@ public class PlayerMovement : MonoBehaviour
     [Header("Movement Settings")]
     [SerializeField] private float _moveSpeed = 5f;
     private Vector3 _moveInput;
+    private Vector3 _rotation;
 
     [Header("Dash Settings")]
     [SerializeField] private float _dashPower = 20f;
@@ -34,6 +35,8 @@ public class PlayerMovement : MonoBehaviour
         {
             DashController();
         }
+
+        Rotate();
     }
 
     private void FixedUpdate()
@@ -52,6 +55,16 @@ public class PlayerMovement : MonoBehaviour
         if (!_isDashing)
         {
             _rigidbody.linearVelocity = new Vector3(_moveInput.x * _moveSpeed, _rigidbody.linearVelocity.y, _moveInput.z * _moveSpeed);
+        }
+    }
+
+    private void Rotate()
+    {
+        _rotation = new Vector3(_moveInput.x, 0, _moveInput.z);
+
+        if (_rotation != Vector3.zero)
+        {
+            transform.rotation = Quaternion.LookRotation(_rotation);
         }
     }
     #endregion

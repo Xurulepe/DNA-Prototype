@@ -147,6 +147,7 @@ public class EnemyBase : MonoBehaviour, IAttackable
     {
         _canAttack = false;
         _navMeshAgent.isStopped = true;
+        transform.rotation = Quaternion.LookRotation(_target.position - transform.position);
     }
 
     protected virtual void Retreat()
