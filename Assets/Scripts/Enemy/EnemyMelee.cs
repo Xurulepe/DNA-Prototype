@@ -24,6 +24,20 @@ public class EnemyMelee : EnemyBase
         }
     }
 
+    protected override void Die()
+    {
+        GameObject healthRegen = HealthRegenPool.Instance.GetPooledObject();
+
+        if (healthRegen != null)
+        {
+            healthRegen.transform.position = transform.position;
+            healthRegen.transform.rotation = Quaternion.identity;
+            healthRegen.SetActive(true);
+        }
+
+        base.Die();
+    }
+
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;

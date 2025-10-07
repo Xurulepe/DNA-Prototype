@@ -135,7 +135,7 @@ MonoBehaviour:
   _attackRange: 10
   _attackCooldown: 2
   _experiencePoints: 10
-  _deathDrop: {fileID: 0}
+  _deathDrop: {fileID: 6280953509078899479, guid: df5ef161a3b508540a6ba9e0a11bd157, type: 3}
   _shootPoint: {fileID: 7091192783210854345}
   _projectileSpeed: 20
   _projectileDamage: 10

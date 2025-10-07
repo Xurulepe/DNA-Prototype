@@ -801,6 +801,7 @@ Transform:
   m_Children:
   - {fileID: 2124381077}
   - {fileID: 1017123139}
+  - {fileID: 505831728}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &161495501
@@ -1405,6 +1406,71 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 1
+--- !u!1 &505831727
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 505831728}
+  - component: {fileID: 505831730}
+  - component: {fileID: 505831729}
+  m_Layer: 0
+  m_Name: Regen Pool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &505831728
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 505831727}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 98843979}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &505831729
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 505831727}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04c20cf9606fe6c45a3640ffb5894015, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pooledObjects: []
+  objectsToPool:
+  - prefab: {fileID: 6280953509078899479, guid: df5ef161a3b508540a6ba9e0a11bd157, type: 3}
+    amount: 25
+--- !u!114 &505831730
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 505831727}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff1f3a4f41dd0b2468b8f80eacfe42dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pooledObjects: []
+  objectsToPool:
+  - prefab: {fileID: 6280953509078899479, guid: 14e8d217bc1f76e47940106246b3ebad, type: 3}
+    amount: 50
 --- !u!1 &564902590
 GameObject:
   m_ObjectHideFlags: 0
@@ -2910,8 +2976,6 @@ MonoBehaviour:
   objectsToPool:
   - prefab: {fileID: 7725615820257994098, guid: 65b14ea083061454e80ec210f0fae8fd, type: 3}
     amount: 50
-  - prefab: {fileID: 8431245681556152, guid: d9d8d10dcecf25b4cbceaabb1bb733ac, type: 3}
-    amount: 10
 --- !u!1001 &2332336103368577538
 PrefabInstance:
   m_ObjectHideFlags: 0

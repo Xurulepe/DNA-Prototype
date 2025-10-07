@@ -24,6 +24,16 @@ public class Player : MonoBehaviour, IAttackable
         _healthSystem.OnDeath.AddListener(Die);
     }
 
+    public void Heal(int amount)
+    {
+        _healthSystem.Heal(amount);
+    }
+
+    public void RegenerateMana(int amount)
+    {
+        _manaSystem.RegenerateMana(amount);
+    }
+
     public void ReceiveAttack(AttackType attackType, int damage)
     {
         TakeDamage(damage);
@@ -38,5 +48,13 @@ public class Player : MonoBehaviour, IAttackable
     {
         Debug.Log("Player has died.");
         gameObject.SetActive(false);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.TryGetComponent(out ICollectable collectable))
+        {
+            collectable.Collect(gameObject);
+        }
     }
 }

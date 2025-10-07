@@ -135,7 +135,7 @@ MonoBehaviour:
   _attackRange: 2
   _attackCooldown: 2
   _experiencePoints: 10
-  _deathDrop: {fileID: 0}
+  _deathDrop: {fileID: 6280953509078899479, guid: 14e8d217bc1f76e47940106246b3ebad, type: 3}
   _meleeAttackPoint: {fileID: 6266792232933640785}
   _meleeRange: {x: 1, y: 1, z: 1}
   _meleeDamage: 10

@@ -24,4 +24,18 @@ public class EnemyShooter : EnemyBase
             projectileScript.ShootProjectile(_shootPoint.forward, _projectileSpeed);
         }
     }
+
+    protected override void Die()
+    {
+        GameObject manaRegen = ManaRegenPool.Instance.GetPooledObject();
+
+        if (manaRegen != null)
+        {
+            manaRegen.transform.position = transform.position;
+            manaRegen.transform.rotation = Quaternion.identity;
+            manaRegen.SetActive(true);
+        }
+
+        base.Die();
+    }
 }
