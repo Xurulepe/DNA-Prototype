@@ -38,8 +38,9 @@ public class EnemyMelee : EnemyBase
         base.Die();
     }
 
-    private void OnDrawGizmosSelected()
+    protected override void OnDrawGizmosSelected()
     {
+        base.OnDrawGizmosSelected();
         Gizmos.color = Color.red;
         Gizmos.DrawWireCube(_meleeAttackPoint.position, _meleeRange);
     }

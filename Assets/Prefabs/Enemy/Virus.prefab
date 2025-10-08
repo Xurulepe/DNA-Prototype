@@ -131,7 +131,8 @@ MonoBehaviour:
   _enemyType: 1
   _target: {fileID: 0}
   _navMeshAgent: {fileID: 3778027147643004392}
-  _detectionRange: 30
+  _detectionRange: 15
+  _retreatRange: 5
   _attackRange: 10
   _attackCooldown: 2
   _experiencePoints: 10

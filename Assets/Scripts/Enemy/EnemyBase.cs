@@ -21,6 +21,7 @@ public class EnemyBase : MonoBehaviour, IAttackable
 
     [Header("Enemy Attack")]
     [SerializeField] protected float _detectionRange;
+    [SerializeField] protected float _retreatRange;
     [SerializeField] protected float _attackRange;
     [SerializeField] protected float _attackCooldown;
     private float _attackTimer;
@@ -123,11 +124,15 @@ public class EnemyBase : MonoBehaviour, IAttackable
         {
             _currentState = State.Chasing;
         }
+        else if (Vector3.Distance(transform.position, _target.position) <= _retreatRange)
+        {
+            _currentState = State.Retreating;
+        }
     }
 
     protected virtual void HandleRetreatState()
     {
-        
+        _currentState = State.Chasing;
     }
     #endregion
 
@@ -192,7 +197,7 @@ public class EnemyBase : MonoBehaviour, IAttackable
         return _enemyType;
     }
 
-    private void OnDrawGizmosSelected()
+    protected virtual void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.cyan;
         Gizmos.DrawWireSphere(transform.position, _detectionRange);

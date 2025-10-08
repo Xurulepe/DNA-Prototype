@@ -38,4 +38,24 @@ public class EnemyShooter : EnemyBase
 
         base.Die();
     }
+
+    protected override void HandleRetreatState()
+    {
+        if (Vector3.Distance(transform.position, _target.position) >= _retreatRange)
+        {
+            _currentState = State.Chasing;
+        }
+        else
+        {
+            Retreat();
+        }
+    }
+
+    protected override void Retreat()
+    {
+        _navMeshAgent.isStopped = false;
+        Vector3 directionAwayFromPlayer = (transform.position - _target.position).normalized;
+        Vector3 retreatPosition = transform.position + directionAwayFromPlayer;
+        _navMeshAgent.SetDestination(retreatPosition);
+    }
 }
