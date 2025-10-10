@@ -17,6 +17,14 @@ public class WhiteBloodCell : MonoBehaviour
     [SerializeField] private List<Transform> _targets;
     [SerializeField] private Transform _currentTarget;
 
+    [Header("Attack Settings")]
+    [SerializeField] private float _attackRange;
+    [SerializeField] private Transform _attackPoint;
+    [SerializeField] private float _attackCooldown;
+    private float _attackTimer;
+    [SerializeField] private int _attackDamage;
+    private bool _canAttack = true;
+
     private void Awake()
     {
         _navMeshAgent = GetComponent<NavMeshAgent>();
@@ -26,6 +34,70 @@ public class WhiteBloodCell : MonoBehaviour
     private void OnEnable()
     {
         GetTargets();
+    }
+
+    private void Update()
+    {
+        HandleBehaviour();
+        AttackCooldown();
+    }
+
+    #region HANDLE BEHAVIOUR
+    private void HandleBehaviour()
+    {
+        if (_currentTarget == null || !_currentTarget.gameObject.activeSelf)
+        {
+            GetTargets();
+            return;
+        }
+
+        if (Vector3.Distance(transform.position, _currentTarget.position) <= _attackRange)
+        {
+            if (_canAttack)
+            {
+                Attack();
+            }
+        }
+        else if (Vector3.Distance(transform.position, _currentTarget.position) <= _detectionRange)
+        {
+            ChaseTarget();
+        }
+    }
+
+    private void ChaseTarget()
+    {
+        _navMeshAgent.isStopped = false;
+        _navMeshAgent.SetDestination(_currentTarget.position);
+    }
+
+    private void Attack()
+    {
+        _canAttack = false;
+        _navMeshAgent.isStopped = true;
+        transform.rotation = Quaternion.LookRotation(_currentTarget.position - transform.position);
+
+        Vector3 halfExtends = _attackRange * 0.5f * Vector3.one;
+        Collider[] hitEnemies = Physics.OverlapBox(_attackPoint.position, halfExtends, Quaternion.identity, _targetLayerMask);
+
+        foreach (Collider enemy in hitEnemies)
+        {
+            if (enemy.TryGetComponent(out IAttackable attackable))
+            {
+                Debug.Log($"{enemy.gameObject.name} Hit by White Blood Cell");
+                attackable.ReceiveAttack(AttackType.Melee, _attackDamage);
+            }
+        }
+    }
+    #endregion
+
+    private void AttackCooldown()
+    {
+        _attackTimer += Time.deltaTime;
+        if (_attackTimer >= _attackCooldown)
+        {
+            _attackTimer = 0f;
+            _canAttack = true;
+        }
     }
 
     #region SELECT TARGET
@@ -65,4 +137,12 @@ public class WhiteBloodCell : MonoBehaviour
         }
     }
     #endregion
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.cyan;
+        Gizmos.DrawWireSphere(transform.position, _detectionRange);
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireCube(_attackPoint.position, new Vector3(_attackRange, _attackRange, _attackRange));
+    }
 }
