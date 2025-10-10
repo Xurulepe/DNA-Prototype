@@ -15,4 +15,6 @@ MonoBehaviour:
   skillName: WhiteBloodCellSummon
   cooldown: 10
   icon: {fileID: 0}
-  whiteBloodCellPrefab: {fileID: 0}
+  whiteBloodCellPrefab: {fileID: 37358848530967064, guid: 9f272894b1655654d879752883773e7c, type: 3}
+  _spawnRadius: 10
+  _numberOfCells: 3

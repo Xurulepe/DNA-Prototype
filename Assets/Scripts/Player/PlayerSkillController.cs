@@ -4,6 +4,8 @@ using UnityEngine.InputSystem;
 
 public class PlayerSkillController : MonoBehaviour
 {
+    [SerializeField] private Player _player;
+
     [SerializeField] private List<SkillSO> _skills = new List<SkillSO>();
     private float[] _lastUseTimes;
 
@@ -49,6 +51,7 @@ public class PlayerSkillController : MonoBehaviour
         }
 
         SkillSO skill = _skills[index];
+
         if (Time.time >= _lastUseTimes[index] + skill.cooldown)
         {
             skill.Activate(gameObject);

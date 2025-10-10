@@ -19,9 +19,13 @@ public class EnemyBase : MonoBehaviour, IAttackable
     [SerializeField] protected Transform _target;
     [SerializeField] protected NavMeshAgent _navMeshAgent;
 
+    [Header("Enemy Movement")]
+    [SerializeField] protected float _patrolRadius;
+    private Vector3 _initialPosition;
+    [SerializeField] protected float _retreatRange;
+
     [Header("Enemy Attack")]
     [SerializeField] protected float _detectionRange;
-    [SerializeField] protected float _retreatRange;
     [SerializeField] protected float _attackRange;
     [SerializeField] protected float _attackCooldown;
     private float _attackTimer;
@@ -139,7 +143,7 @@ public class EnemyBase : MonoBehaviour, IAttackable
     #region States Actions
     protected virtual void Patrol()
     {
-
+        
     }
 
     protected virtual void Chase()

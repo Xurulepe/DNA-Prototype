@@ -50,6 +50,11 @@ public class Player : MonoBehaviour, IAttackable
         gameObject.SetActive(false);
     }
 
+    public void UseSkill(int manaCost)
+    {
+        _manaSystem.UseSkill(manaCost);
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.TryGetComponent(out ICollectable collectable))
