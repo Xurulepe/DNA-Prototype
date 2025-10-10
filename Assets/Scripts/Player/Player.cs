@@ -55,6 +55,11 @@ public class Player : MonoBehaviour, IAttackable
         _manaSystem.UseSkill(manaCost);
     }
 
+    public bool HasEnoughMana(int manaCost)
+    {
+        return _manaSystem.GetCurrentMana() >= manaCost;
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.TryGetComponent(out ICollectable collectable))

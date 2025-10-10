@@ -15,5 +15,6 @@ MonoBehaviour:
   skillName: PlasmaRay
   cooldown: 12
   icon: {fileID: 0}
+  manaCost: 7
   plasmaRayPrefab: {fileID: 0}
   duration: 3

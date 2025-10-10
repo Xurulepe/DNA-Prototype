@@ -15,5 +15,6 @@ MonoBehaviour:
   skillName: ForceField
   cooldown: 20
   icon: {fileID: 0}
+  manaCost: 10
   shieldPrefab: {fileID: 0}
   shieldDuration: 5

@@ -11,6 +11,8 @@ public class PlayerSkillController : MonoBehaviour
 
     private void Awake()
     {
+        _player = GetComponent<Player>();
+
         _lastUseTimes = new float[_skills.Count];
 
         for (int i = 0; i < _lastUseTimes.Length; i++)
@@ -52,8 +54,12 @@ public class PlayerSkillController : MonoBehaviour
 
         SkillSO skill = _skills[index];
 
-        if (Time.time >= _lastUseTimes[index] + skill.cooldown)
+        bool hasEnoughMana = _player.HasEnoughMana(skill.manaCost);
+        bool isOffCooldown = Time.time >= _lastUseTimes[index] + skill.cooldown;
+
+        if (isOffCooldown && hasEnoughMana)
         {
+            _player.UseSkill(skill.manaCost);
             skill.Activate(gameObject);
             _lastUseTimes[index] = Time.time;
         }

@@ -6,6 +6,7 @@ public abstract class SkillSO : ScriptableObject
     public string skillName;
     public float cooldown;
     public Sprite icon;
+    public int manaCost;
 
     /// <summary>
     /// O que acontece quando a habilidade é ativada.
